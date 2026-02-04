@@ -13,10 +13,9 @@ renamed as (
         shipping_fee,
         shipping_fee_1,
         logcost,
-        CAST (ship_cost AS FLOAT64)
+        CAST (ship_cost AS FLOAT64) 
 
     from source
-    WHERE
 
 )
 

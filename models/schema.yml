@@ -1,0 +1,14 @@
+# schema.yml
+version: 2
+
+sources: 
+  - name: raw_gz_data as raw
+    database: winter-arena-482019-k2
+    schema: raw_gz_data
+    loader: bigquery
+    description: dataset of Greenweez's sales
+    tables:
+     - name: raw_gz_sales as sales
+     - name: raw_gz_product as product
+     - name: raw_gz_ship as ship
+ 

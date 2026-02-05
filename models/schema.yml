@@ -1,7 +1,7 @@
 # schema.yml
 version: 2
 
-sources: 
+sources:
   - name: raw
     database: winter-arena-482019-k2
     schema: gz_raw_data
@@ -10,7 +10,45 @@ sources:
     tables:
       - name: sales
         identifier: raw_gz_sales
+        description: sales of Greenweez/ we have on row per product_id found in each orders_id
+        tests:
+         - unique:
+            column_name: "(orders_id || '-' || pdt_id)" 
+        columns:
+          - name: date_date
+            description: date of purchase
+          - name: orders_id
+            description: numero de commande produits 
+          - name: pdt_id
+            description: id of the produit
+          - name: revenue
+            description: revenue per product
+          - name: quantity
+            description: quantité of purchase product
+
       - name: product
         identifier: raw_gz_product
+        description: product of Greenweez / products_id by purchase price
+        columns:
+          - name: products_id
+            description: id of the product
+            tests:
+              - unique
+              - not_null
+          - name: purchase_price
+            description: purchase price per product
       - name: ship
         identifier: raw_gz_ship
+        description: Greenweez
+        columns:
+          - name: orders_id
+            description: id of the order
+            tests:
+              - unique
+              - not_null
+          - name: shipping_fee
+            description: shipping fee for the clients
+          - name: log_Cost
+            description: logistic cost
+          - name: ship_cost
+            description: shipping cost
